@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T4TEQ Software Solutions</title>
+    <link rel="icon" href="./T4TEQ-01.png">
+    
+    <!-- FontAwesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <style>
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            color: #ff9101;
+        }
+
+        h3 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form input {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form input, .form button {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .form-control:focus {
+            border: 2px solid  #ff9101;
+            box-shadow: 0 0 10px  #ff9101;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .valid-border {
+            border: 2px solid green;
+        }
+
+        .invalid-border {
+            border: 2px solid red;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form button {
+            width: 48%;
+            transition: background-color 0.3s ease;
+        }
+
+        .row .col-6 {
+            margin-bottom: 15px;
+        }
+
+        .small-text {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .form button i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><u>T<span>4</span>TEQ <span>S</span>O<span>FTWARE</span> S<span>O</span>LUTIONS</u></h1>
+        <div class="form">
+            <h3><u>CERTIFICATE REQUEST APPLICATION</u></h3>
+            <form id="certificateForm">
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="formNo" class="form-label">Form No.</label>
+                        <input type="text" name="formNo" id="formNo" class="form-control" placeholder="Enter form number" th:value="${formno}">
+                        <div id="formNoError" class="error-message"></div>
+                    </div>
+                    <div class="col-6">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" name="date" id="date" class="form-control" placeholder="Enter date" th:value="${date}">
+                        <div id="dateError" class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="name" class="form-label">Full Name <br><small class="small-text">(Fill in Caps with Initials Last)</small></label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter full name" th:value="${name}">
+                    <div id="nameError" class="error-message"></div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="regNo" class="form-label">Reg. No.</label>
+                        <input type="text" name="regNo" id="regNo" class="form-control" placeholder="Enter registration number" th:value="${regno}">
+                        <div id="regNoError" class="error-message"></div>
+                    </div>
+                    <div class="col-6">
+                        <label for="whatNo" class="form-label">Whatsapp No.</label>
+                        <input type="text" name="whatNo" id="whatNo" class="form-control" placeholder="Enter Whatsapp number" th:value="${whatno}">
+                        <div id="whatNoError" class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="emailId" class="form-label">Email id</label>
+                    <input type="email" name="emailId" id="emailId" class="form-control" placeholder="Enter email id" th:value="${emailid}">
+                    <div id="emailIdError" class="error-message"></div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="course" class="form-label">Course & Code</label>
+                    <input type="text" name="course" id="course" class="form-control" placeholder="Enter course name & code" th:value="${course}">
+                    <div id="courseError" class="error-message"></div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="trainer" class="form-label">Trainer Name</label>
+                    <input type="text" name="trainer" id="trainer" class="form-control" placeholder="Enter trainer name" th:value="${trainer}">
+                    <div id="trainerError" class="error-message"></div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <button onclick="return validateForm()" class="btn btn-success w-100" formaction="/addData" formmethod="post">
+                            <i class="fas fa-plus-circle"></i> Add
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="reset" class="btn btn-secondary w-100">
+                            <i class="fas fa-eraser"></i> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <button  class="btn btn-primary w-100" formaction="/getData" formmethod="post">
+                            <i class="fas fa-search"></i> Retrieve
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-warning w-100" formaction="/updateData" formmethod="post">
+                            <i class="fas fa-edit"></i> Update
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-danger w-100" formaction="/deleteData" formmethod="post">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous error messages
+            clearErrors();
+
+            // Get all form fields
+            let formNo = document.getElementById("formNo");
+            let date = document.getElementById("date");
+            let name = document.getElementById("name");
+            let regNo = document.getElementById("regNo");
+            let whatsapp = document.getElementById("whatNo");
+            let email = document.getElementById("emailId");
+            let course = document.getElementById("course");
+            let trainer = document.getElementById("trainer");
+
+            // Validate Full Name
+            if (name.value.trim() === "") {
+                setError(name, "Full Name is required!");
+                isValid = false;
+            } else {
+                setValid(name);
+            }
+
+            // Validate Registration No.
+            if (regNo.value.trim() === "") {
+                setError(regNo, "Registration Number is required!");
+                isValid = false;
+            } else {
+                setValid(regNo);
+            }
+
+            // Validate Email
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email.value)) {
+                setError(email, "Please enter a valid email address.");
+                isValid = false;
+            } else {
+                setValid(email);
+            }
+
+            // Validate Course
+            if (course.value.trim() === "") {
+                setError(course, "Course name & code are required!");
+                isValid = false;
+            } else {
+                setValid(course);
+            }
+
+            // Validate Trainer
+            if (trainer.value.trim() === "") {
+                setError(trainer, "Trainer name is required!");
+                isValid = false;
+            } else {
+                setValid(trainer);
+            }
+
+            // Validate Date
+            if (date.value.trim() === "") {
+                setError(date, "Date is required!");
+                isValid = false;
+            } else {
+                setValid(date);
+            }
+
+            // Validate Whatsapp No.
+            let whatsappPattern = /^[0-9]{10}$/;
+            if (!whatsappPattern.test(whatsapp.value)) {
+                setError(whatsapp, "Please enter a valid 10-digit Whatsapp number.");
+                isValid = false;
+            } else {
+                setValid(whatsapp);
+            }
+
+            return isValid;
+        }
+
+        function setError(input, message) {
+            let errorMessage = document.getElementById(input.id + "Error");
+            input.classList.add("invalid-border");
+            input.classList.remove("valid-border");
+            errorMessage.textContent = message;
+        }
+
+        function setValid(input) {
+            let errorMessage = document.getElementById(input.id + "Error");
+            input.classList.add("valid-border");
+            input.classList.remove("invalid-border");
+            errorMessage.textContent = "";
+        }
+
+        function clearErrors() {
+            let inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.classList.remove("valid-border", "invalid-border");
+                let errorMessage = document.getElementById(input.id + "Error");
+                errorMessage.textContent = "";
+            });
+        }
+    </script>
+</body>
+</html>
